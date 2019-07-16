@@ -48,6 +48,17 @@
           .then((response) => {
             console.log(response.data);
             this.result = response.data;
+
+            // Assign a URL to each rhyme
+            for (let rhyme of this.result.rhymes) {
+              if (rhyme.word[0] === rhyme.word[0].toUpperCase()) {
+                rhyme.url = 'https://no.wikipedia.org/wiki/' + encodeURIComponent(rhyme.word)
+              } else {
+                // If the first letter is uppercase, it's probably an "egennamn". In that case,
+                // we link to Wikipedia
+                rhyme.url = 'https://ordbok.uib.no/perl/ordbok.cgi?OPP=' + encodeURIComponent(rhyme.word) + '&ant_nynorsk=5&nynorsk=+&ordbok=nynorsk';
+              }
+            }
             this.loading = false;
           })
           .catch((error) => {
