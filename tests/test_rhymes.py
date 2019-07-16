@@ -16,4 +16,8 @@ class TestRhymes(unittest.TestCase):
         rhymes = get_rhymes("drueklase")
         rhyme_words = [rhyme["word"] for rhyme in rhymes]
         self.assertNotIn("drueklase", rhyme_words)
-        
+    
+    def test_whitespace_in_search_word(self):
+        rhymes = get_rhymes(" daggry ")
+        rhyme_words = [rhyme["word"] for rhyme in rhymes]
+        self.assertIn("gry", rhyme_words)

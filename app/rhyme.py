@@ -4,7 +4,7 @@ from app.utils import get_words
 def get_rhymes(word):
     assert type(word) == str
     assert len(word) >= 1
-
+    word = word.strip()
     words = get_words()
 
     rhymes = []
