@@ -11,8 +11,6 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 COPY nginx-app.conf /etc/nginx/sites-available/default
 COPY supervisor-app.conf /etc/supervisord.conf
 
-RUN conda install python=3.6.6
-
 RUN pip install pyuwsgi==2.0.18 supervisor==4.0.3
 
 # First copy only requirements.txt, to cache dependencies
@@ -21,6 +19,9 @@ RUN pip install -r requirements.txt
 
 # Then copy the rest of the files
 COPY . .
+
+# Use Vue.js production mode
+RUN sed -i.bak "s|lib/vue.js/vue.js|lib/vue.js/vue.min.js|" web_app/index.html
 
 EXPOSE 80
 CMD ["supervisord", "-n"]
