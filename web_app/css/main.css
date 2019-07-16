@@ -7,6 +7,33 @@ html, body {
   display: none
 }
 
+/* --------- HEADER -------- */
+
+h1, a, a:visited {
+  text-decoration: none;
+  color: rgb(240, 240, 240);
+}
+
+a {
+  width: 276px;
+  display: block;
+  transform: translateX(-50%);
+  left: 50%;
+  position: relative;
+}
+
+img {
+  display: block;
+  position: absolute;
+  left: -15px;
+}
+
+h1 {
+  font-size: 1.6em;
+}
+
+/* ---------- MAIN ----------- */
+
 body {
   background: #8db2cc;
 }
@@ -21,11 +48,7 @@ body {
   color:rgb(49, 49, 49);
 }
 
-h1 {
-  color: rgb(240, 240, 240);
-}
-
-#data-wrapper h2, #data-wrapper form, h1 {
+#data-wrapper h2, #data-wrapper form, a {
   text-align: center;
 }
 
