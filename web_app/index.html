@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Nynorsk rimordbok</title>
+  <title>Nynorsk Rimordbok</title>
   <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
 
   <script src="lib/vue.js/vue.js"></script>
@@ -27,9 +27,12 @@
   </form>
   <p v-if="loading">Leiter etter rimord...</p>
 
+  <h3 v-if="!loading && result && !result.rhymes.length">
+    Me finn ingen ord som rimar
+  </h3>
   <ul v-if="result">
-    <li v-for="rhyme in result.rhymes">
-      {{ rhyme.word }},
+    <li v-for="(rhyme, index) in result.rhymes">
+      {{ rhyme.word }}{{ index < result.rhymes.length - 1 ? ',' : '' }}
     </li>
   </ul>
 </div>

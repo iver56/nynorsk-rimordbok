@@ -48,8 +48,12 @@ body {
   color:rgb(49, 49, 49);
 }
 
-#data-wrapper h2, #data-wrapper form, a {
+#data-wrapper h2, #data-wrapper h3, #data-wrapper form, a {
   text-align: center;
+}
+
+#data-wrapper h2 {
+  margin-top: 0;
 }
 
 #data-wrapper input, #data-wrapper button {
