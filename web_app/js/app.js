@@ -9,12 +9,24 @@
       result: null
     },
     created: function() {
-      console.log('app created')
-      setTimeout(function() {
-        const searchfield = document.querySelector("#search");
-        searchfield.focus();
-        searchfield.select();
-      }, 10)
+      // When the user clicks "back" in the browser, to view the previous search, onpopstate
+      // gets triggered
+      window.onpopstate = (event) => {
+        this.text = event.state.text;
+        this.requestRhymes();
+      };
+
+      const word = findGetParameter('ord');
+      if (word) {
+        this.text = word;
+        this.requestRhymes();
+      } else {
+        setTimeout(function() {
+          const searchfield = document.querySelector("#search");
+          searchfield.focus();
+          searchfield.select();
+        }, 10);
+      }
     },
     methods: {
       requestRhymes: function() {
@@ -24,6 +36,13 @@
         this.loading = true;
 
         const payload = {text: this.text};
+
+        // Update URL
+        history.pushState(
+          payload,
+          this.text + ' | Nynorsk Rimordbok',
+          '/?ord=' + encodeURIComponent(this.text)
+        );
 
         return axios.post('/get_rhymes/', payload)
           .then((response) => {
