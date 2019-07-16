@@ -48,3 +48,15 @@ class TestRhymes(unittest.TestCase):
     def test_limit_number_of_results(self):
         rhymes = get_rhymes("kløver")
         self.assertLessEqual(len(rhymes), 500)
+
+    def test_consider_4_last_letters(self):
+        rhymes = get_rhymes("kjeksa")
+        floyelsbuksa_rank = None
+        trollheksa_rank = None
+        for i, rhyme in enumerate(rhymes):
+            if rhyme["word"] == "fløyelsbuksa":
+                floyelsbuksa_rank = i
+            elif rhyme["word"] == "trollheksa":
+                trollheksa_rank = i
+
+        self.assertGreater(floyelsbuksa_rank, trollheksa_rank)
