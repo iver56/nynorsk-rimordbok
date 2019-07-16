@@ -16,4 +16,18 @@ Run server: `python web_app.py`
 
 # Development
 
+## Code style
+
+Format your python code with `black`. Set up your IDE to obey `.editorconfig`.
+
+## Docker
+
+Build docker image: `docker build -t nynorsk-rimordbok .`
+
+Run docker image: `docker run -d -p 80:80 --name="nynorsk-rimordbok" nynorsk-rimordbok`
+
+Now go to http://localhost to see if it works
+
+## Testing
+
 Run tests: `pytest`
