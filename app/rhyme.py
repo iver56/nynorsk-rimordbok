@@ -13,15 +13,26 @@ def get_rhymes(word):
     words = get_words()
 
     rhymes = []
-    ending_size = min(3, len(word))
-    ending = word[-ending_size:]
+    max_ending_size = min(4, len(word))
+    max_ending = word[-max_ending_size:]
+    smaller_ending_size = max(1, max_ending_size - 1)
+    smaller_ending = word[-smaller_ending_size:]
     for candidate_word in words:
         candidate_word_lower = candidate_word.lower()
-        if candidate_word_lower.endswith(ending) and candidate_word_lower != word:
+        if candidate_word_lower == word:
+            # Discard, because we don't want to include the search word in the results
+            continue
+
+        if candidate_word_lower.endswith(smaller_ending):
             word_syllables = get_syllables(candidate_word)
             rhyme = {"word": candidate_word, "score": 100, "syllables": word_syllables}
+
+            if candidate_word_lower.endswith(max_ending):
+                rhyme['score'] *= 2
+
             if candidate_word.lower().endswith(word):
-                rhyme["score"] *= 0.5
+                rhyme["score"] *= 0.3
+
             rhymes.append(rhyme)
 
     rhymes.sort(key=lambda rhyme: rhyme["score"], reverse=True)
