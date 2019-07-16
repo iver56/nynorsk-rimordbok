@@ -1,6 +1,9 @@
+from functools import lru_cache
+
 from app.utils import get_words
 
 
+@lru_cache(maxsize=9001)
 def get_rhymes(word):
     word = word.strip()
     assert type(word) == str
