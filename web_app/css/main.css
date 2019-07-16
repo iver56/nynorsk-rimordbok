@@ -6,3 +6,43 @@ html, body {
 [v-cloak] {
   display: none
 }
+
+body {
+  background: #8db2cc;
+}
+
+#data-wrapper {
+  background: #f0f0f0;
+  border-radius: 2px;
+  width: 100%;
+  max-width: 960px;
+  margin: auto;
+  padding: 40px 0;
+  color:rgb(49, 49, 49);
+}
+
+h1 {
+  color: rgb(240, 240, 240);
+}
+
+#data-wrapper h2, #data-wrapper form, h1 {
+  text-align: center;
+}
+
+#data-wrapper input, #data-wrapper button {
+  font-size: 1.3em;
+  padding: 2px 3px;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  max-width: 100%;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+ul li {
+  padding-right: 9px;
+  line-height: 1.5em;
+}

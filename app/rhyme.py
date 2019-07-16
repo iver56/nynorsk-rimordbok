@@ -2,9 +2,9 @@ from app.utils import get_words
 
 
 def get_rhymes(word):
+    word = word.strip()
     assert type(word) == str
     assert len(word) >= 1
-    word = word.strip()
     words = get_words()
 
     rhymes = []

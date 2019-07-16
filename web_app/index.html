@@ -14,21 +14,23 @@
 </head>
 
 <body>
-<div id="data-wrapper" v-cloak>
-  <p>Skriv inn eit ord</p>
+  <h1>Nynorsk Rimordbok</h1>
+  <div id="data-wrapper" v-cloak>
+    <h2>Skriv inn eit ord</h2>
   <form v-on:submit.prevent="requestRhymes()">
     <input
         type="text"
         v-model="text"
         style="min-width: 280px"
+        required
     >
     <button type="submit" :disabled="loading">Finn rimord</button>
   </form>
   <p v-if="loading">Leiter etter rimord...</p>
-
+  
   <ul v-if="result">
     <li v-for="rhyme in result.rhymes">
-      {{ rhyme.word }}
+      {{ rhyme.word }},
     </li>
   </ul>
 </div>
