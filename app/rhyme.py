@@ -10,8 +10,8 @@ def get_rhymes(word):
     rhymes = []
     ending_size = min(3, len(word))
     ending = word[-ending_size:]
-    for word in words:
-        if word.endswith(ending):
-            rhymes.append({"word": word, "score": 100})
+    for candidate_word in words:
+        if candidate_word.endswith(ending) and candidate_word != word:
+            rhymes.append({"word": candidate_word, "score": 100})
 
     return rhymes
