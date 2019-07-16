@@ -12,7 +12,7 @@ def get_words():
 
     words = set()
 
-    with open(DATA_DIR / "fullform_nn.txt", "r") as words_file:
+    with open(DATA_DIR / "fullform_nn.txt", "r", encoding='cp1252') as words_file:
         for line in words_file.readlines():
             if line.startswith("*") or len(line) < 3:
                 continue
