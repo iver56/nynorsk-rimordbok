@@ -16,8 +16,14 @@ def get_rhymes(word):
     for candidate_word in words:
         if candidate_word.lower().endswith(ending) and candidate_word != word:
             word_syllables = get_syllables(candidate_word)
-            rhymes.append({"word": candidate_word, "score": 100, "syllables": word_syllables})
+            rhyme = {"word": candidate_word, "score": 100, "syllables": word_syllables}
+            if candidate_word.lower().endswith(word):
+                rhyme["score"] *= 0.5
+            rhymes.append(rhyme)
 
+
+    rhymes.sort(key=lambda rhyme: rhyme['score'], reverse=True)
+    
     return rhymes
 
 def get_syllables(word):
