@@ -83,3 +83,11 @@ ul li {
   padding-right: 9px;
   line-height: 1.5em;
 }
+
+.good-match {
+  font-weight: bold;
+}
+
+.bad-match {
+  opacity: .66;
+}

@@ -34,7 +34,7 @@
   </h3>
   <ul v-if="result">
     <li v-for="(rhyme, index) in result.rhymes">
-      <a :href="'https://ordbok.uib.no/perl/ordbok.cgi?OPP='+rhyme.word+'&ant_nynorsk=5&nynorsk=+&ordbok=nynorsk'" target="_blank">{{ rhyme.word }}</a>{{ index < result.rhymes.length - 1 ? ',' : '' }}
+      <a :class="rhyme.score > 100 ? 'good-match' : (rhyme.score < 80 ? 'bad-match' : '')" :href="'https://ordbok.uib.no/perl/ordbok.cgi?OPP='+rhyme.word+'&ant_nynorsk=5&nynorsk=+&ordbok=nynorsk'" target="_blank">{{ rhyme.word }}</a>{{ index < result.rhymes.length - 1 ? ',' : '' }}
     </li>
   </ul>
 </div>
