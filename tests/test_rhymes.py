@@ -21,3 +21,11 @@ class TestRhymes(unittest.TestCase):
         rhymes = get_rhymes(" daggry ")
         rhyme_words = [rhyme["word"] for rhyme in rhymes]
         self.assertIn("gry", rhyme_words)
+
+    def test_syllables_in_result(self):
+        rhymes = get_rhymes("daggry")
+        for rhyme in rhymes:
+            if rhyme["word"] == "morgongry":
+                self.assertIn(3, [rhyme["syllables"]])
+
+        

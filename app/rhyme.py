@@ -15,6 +15,14 @@ def get_rhymes(word):
     ending = word[-ending_size:]
     for candidate_word in words:
         if candidate_word.lower().endswith(ending) and candidate_word != word:
-            rhymes.append({"word": candidate_word, "score": 100})
+            word_syllables = get_syllables(candidate_word)
+            rhymes.append({"word": candidate_word, "score": 100, "syllables": word_syllables})
 
     return rhymes
+
+def get_syllables(word):
+    syllable_map = (map(word.lower().count, "aeiouyæøå"))
+    syllable_sum = sum(syllable_map)
+    return syllable_sum
+
+    
