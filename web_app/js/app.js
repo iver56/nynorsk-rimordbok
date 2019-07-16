@@ -44,7 +44,7 @@
           '/?ord=' + encodeURIComponent(this.text)
         );
 
-        return axios.post('/get_rhymes/', payload)
+        return axios.post('/api/get_rhymes/', payload)
           .then((response) => {
             console.log(response.data);
             this.result = response.data;

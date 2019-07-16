@@ -20,8 +20,9 @@ RUN pip install -r requirements.txt
 # Then copy the rest of the files
 COPY . .
 
-# Use Vue.js production mode
+# Use production mode
 RUN sed -i.bak "s|lib/vue.js/vue.js|lib/vue.js/vue.min.js|" web_app/index.html
+RUN sed -i.bak "s|DEBUG = True|DEBUG = False|" app/settings.py
 
 EXPOSE 80
 CMD ["supervisord", "-n"]
