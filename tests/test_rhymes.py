@@ -39,3 +39,8 @@ class TestRhymes(unittest.TestCase):
                 gjerrigknark_rank = i
 
         self.assertGreater(sevjebark_rank, gjerrigknark_rank)
+
+    def test_case_insensitivity(self):
+        rhymes = get_rhymes("gry")
+        rhyme_words = [rhyme["word"] for rhyme in rhymes]
+        self.assertNotIn("Gry", rhyme_words)
