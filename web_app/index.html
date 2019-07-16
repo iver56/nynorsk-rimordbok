@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Nynorsk rimordbok</title>
+  <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
+
+  <script src="lib/jquery/jquery-3.3.1.min.js"></script>
+  <script src="lib/vue.js/vue.js"></script>
+  <script src="lib/axios/axios.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+
+<body>
+<div id="data-wrapper" v-cloak>
+  <p>Skriv inn eit ord</p>
+  <form v-on:submit.prevent="requestRhymes()">
+    <input
+        type="text"
+        v-model="text"
+        style="min-width: 280px"
+    >
+    <button type="submit" :disabled="loading">Finn rimord</button>
+  </form>
+  <p v-if="loading">Leiter etter rimord...</p>
+
+  <ul v-if="result">
+    <li v-for="rhyme in result.rhymes">
+      {{ rhyme.word }}
+    </li>
+  </ul>
+</div>
+
+<script src="js/app.js"></script>
+
+</body>
+
+</html>
