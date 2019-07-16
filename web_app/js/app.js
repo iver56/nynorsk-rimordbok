@@ -10,6 +10,11 @@
     },
     created: function() {
       console.log('app created')
+      setTimeout(function() {
+        const searchfield = document.querySelector("#search");
+        searchfield.focus();
+        searchfield.select();
+      }, 10)
     },
     methods: {
       requestRhymes: function() {

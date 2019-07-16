@@ -22,12 +22,12 @@
         type="text"
         v-model="text"
         style="min-width: 280px"
+        id="search"
         required
-    >
-    <button type="submit" :disabled="loading">Finn rimord</button>
+    ><button type="submit" :disabled="loading">Finn rimord</button>
   </form>
   <p v-if="loading">Leiter etter rimord...</p>
-  
+
   <ul v-if="result">
     <li v-for="rhyme in result.rhymes">
       {{ rhyme.word }},

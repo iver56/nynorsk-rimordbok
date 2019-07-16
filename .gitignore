@@ -126,3 +126,6 @@ dmypy.json
 
 # Extracted data files
 data/*.txt
+
+# Mac Specific
+.DS_Store
