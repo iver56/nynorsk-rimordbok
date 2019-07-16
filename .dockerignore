@@ -7,5 +7,6 @@
 .pytest_cache
 *.pyc
 coverage.xml
+k8s/*
 README.md
 pytest.ini
