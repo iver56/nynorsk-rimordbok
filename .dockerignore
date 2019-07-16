@@ -1,0 +1,11 @@
+.circleci
+.coverage
+.editorconfig
+.gitattributes
+.git
+.idea
+.pytest_cache
+*.pyc
+coverage.xml
+README.md
+pytest.ini
