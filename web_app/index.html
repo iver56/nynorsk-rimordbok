@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <a href="/"><img src="img/logo.png"><h1>Nynorsk<br>Rimordbok</h1></a>
+  <a href="/"><img id="logo" src="img/logo.png"><h1>Nynorsk<br>Rimordbok</h1></a>
   <div id="data-wrapper" v-cloak>
 
   <form v-on:submit.prevent="requestRhymes()">
@@ -24,9 +24,8 @@
         id="search"
         required
     ><button type="submit" :disabled="loading">Finn rimord</button>
-    <span v-if="loading"><img src="/img/ajax-loader.gif" alt=""></span>
+    <img v-if="loading" id="loading-icon" src="/img/ajax-loader.gif" alt="Leitar etter rimord...">
   </form>
-  <p v-if="loading">Leiter etter rimord...</p>
 
   <h3 v-if="!loading && result && !result.rhymes.length">
     Me finn ingen ord som rimar

@@ -22,7 +22,7 @@ a {
   position: relative;
 }
 
-img {
+#logo {
   display: block;
   position: absolute;
   left: -15px;
@@ -60,6 +60,15 @@ body {
   font-size: 1.3em;
   padding: 2px 3px;
   margin: 5px;
+}
+
+form {
+  position: relative;
+}
+
+#loading-icon {
+  position: absolute;
+  top: 8px;
 }
 
 ul {
