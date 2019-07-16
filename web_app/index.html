@@ -13,7 +13,9 @@
 </head>
 
 <body>
-  <a href="/"><img id="logo" src="img/logo.png"><h1>Nynorsk<br>Rimordbok</h1></a>
+  <header>
+    <a href="/"><img id="logo" src="img/logo.png"><h1>Nynorsk<br>Rimordbok</h1></a>
+  </header>
   <div id="data-wrapper" v-cloak>
 
   <form v-on:submit.prevent="requestRhymes()">
@@ -32,7 +34,7 @@
   </h3>
   <ul v-if="result">
     <li v-for="(rhyme, index) in result.rhymes">
-      {{ rhyme.word }}{{ index < result.rhymes.length - 1 ? ',' : '' }}
+      <a :href="'https://ordbok.uib.no/perl/ordbok.cgi?OPP='+rhyme.word+'&ant_nynorsk=5&nynorsk=+&ordbok=nynorsk'" target="_blank">{{ rhyme.word }}</a>{{ index < result.rhymes.length - 1 ? ',' : '' }}
     </li>
   </ul>
 </div>

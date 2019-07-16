@@ -9,12 +9,12 @@ html, body {
 
 /* --------- HEADER -------- */
 
-h1, a, a:visited {
+h1, header a, header a:visited {
   text-decoration: none;
   color: rgb(240, 240, 240);
 }
 
-a {
+header a {
   width: 276px;
   display: block;
   transform: translateX(-50%);
