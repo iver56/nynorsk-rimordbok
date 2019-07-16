@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from functools import lru_cache
 
 from app.utils import get_words
@@ -22,12 +24,15 @@ def get_rhymes(word):
                 rhyme["score"] *= 0.5
             rhymes.append(rhyme)
 
-    rhymes.sort(key=lambda rhyme: rhyme['score'], reverse=True)
-    
+    rhymes.sort(key=lambda rhyme: rhyme["score"], reverse=True)
+
+    # Limit the number of words in the result
+    rhymes = rhymes[0:500]
+
     return rhymes
 
+
 def get_syllables(word):
-    syllable_map = (map(word.lower().count, "aeiouyæøå"))
+    syllable_map = map(word.lower().count, "aeiouyæøå")
     syllable_sum = sum(syllable_map)
     return syllable_sum
-

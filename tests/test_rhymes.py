@@ -44,3 +44,7 @@ class TestRhymes(unittest.TestCase):
         rhymes = get_rhymes("gry")
         rhyme_words = [rhyme["word"] for rhyme in rhymes]
         self.assertNotIn("Gry", rhyme_words)
+
+    def test_limit_number_of_results(self):
+        rhymes = get_rhymes("kløver")
+        self.assertLessEqual(len(rhymes), 500)
