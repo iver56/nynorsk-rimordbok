@@ -33,7 +33,7 @@
   </form>
 
   <h3 v-if="!loading && result && !result.rhymes.length">
-    Me finn ingen ord som rimar
+    Me finn ingen ord som rimar på {{ text }}
   </h3>
   <ul v-if="result">
     <li v-for="(rhyme, index) in result.rhymes">

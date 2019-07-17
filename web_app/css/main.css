@@ -16,7 +16,8 @@ h1, header a, header a:visited {
 }
 
 header {
-  background: #517690;
+  background: #6d93ac;
+  /* background: #517690; */
   padding: 30px;
 }
 
@@ -41,7 +42,8 @@ h1 {
 /* ---------- MAIN ----------- */
 
 body {
-  background: #8db2cc;
+  background: #3e3e3e;
+  /* background: #8db2cc; */
 }
 
 #data-wrapper {
