@@ -6,13 +6,19 @@ from app.settings import DEBUG
 
 app = Flask(__name__, static_folder="web_app")
 
+if DEBUG:
+    @app.route("/")
+    def root():
+        return app.send_static_file("index.html")
 
-@app.route("/")
-def root():
-    return app.send_static_file("index.html")
+
+    @app.route("/<path:path>")
+    def static_proxy(path):
+        # send_static_file will guess the correct MIME type
+        return app.send_static_file(path)
 
 
-@app.route("/get_rhymes/", methods=["POST"])
+@app.route("/api/get_rhymes/", methods=["POST"])
 def get_rhymes():
     text = request.json.get("text", "")
 
@@ -25,12 +31,6 @@ def get_rhymes():
     rhymes = get_rhymes_function(text)
 
     return jsonify({"rhymes": rhymes})
-
-
-@app.route("/<path:path>")
-def static_proxy(path):
-    # send_static_file will guess the correct MIME type
-    return app.send_static_file(path)
 
 
 if __name__ == "__main__":

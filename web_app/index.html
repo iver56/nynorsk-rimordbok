@@ -13,20 +13,23 @@
 </head>
 
 <body>
-  <header>
-    <a href="/"><img id="logo" src="img/logo.png"><h1>Nynorsk<br>Rimordbok</h1></a>
-  </header>
-  <div id="data-wrapper" v-cloak>
+<header>
+  <a href="/"><img id="logo" src="img/logo.png">
+    <h1>Nynorsk<br>Rimordbok</h1></a>
+</header>
+<div id="data-wrapper" v-cloak>
 
   <form v-on:submit.prevent="requestRhymes()">
     <input
-        type="text"
-        v-model="text"
-        style="min-width: 280px"
-        id="search"
-        required
-    ><button type="submit" :disabled="loading">Finn rimord</button>
-    <img v-if="loading" id="loading-icon" src="/img/ajax-loader.gif" alt="Leitar etter rimord...">
+      type="text"
+      v-model="text"
+      style="min-width: 280px"
+      id="search"
+      required
+    >
+    <button type="submit" :disabled="loading">Finn rimord</button>
+    <img v-if="loading" id="loading-icon" src="/img/ajax-loader.gif"
+         alt="Leitar etter rimord...">
   </form>
 
   <h3 v-if="!loading && result && !result.rhymes.length">
