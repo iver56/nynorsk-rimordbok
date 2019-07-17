@@ -12,8 +12,15 @@
       // When the user clicks "back" in the browser, to view the previous search, onpopstate
       // gets triggered
       window.onpopstate = (event) => {
-        this.text = event.state.text;
-        this.requestRhymes(false);
+        if (event.state && event.state.text) {
+          this.text = event.state.text;
+          this.requestRhymes(false);
+        } else {
+          this.text = '';
+          this.result = null;
+          document.title = 'Nynorsk Rimordbok';
+        }
+
       };
 
       const word = findGetParameter('ord');
@@ -38,13 +45,15 @@
         const payload = {text: this.text};
 
         // Update URL
+        const title = this.text + ' | Nynorsk Rimordbok';
         if(shouldPushState){
           history.pushState(
             payload,
-            this.text + ' | Nynorsk Rimordbok',
+            title,
             '/?ord=' + encodeURIComponent(this.text)
           );
         }
+        document.title = title;
 
         return axios.post('/api/get_rhymes/', payload)
           .then((response) => {
