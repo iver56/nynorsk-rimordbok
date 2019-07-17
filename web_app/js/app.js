@@ -13,7 +13,7 @@
       // gets triggered
       window.onpopstate = (event) => {
         this.text = event.state.text;
-        this.requestRhymes();
+        this.requestRhymes(false);
       };
 
       const word = findGetParameter('ord');
@@ -29,7 +29,7 @@
       }
     },
     methods: {
-      requestRhymes: function() {
+      requestRhymes: function(shouldPushState=true) {
         /**
          * Post the word to the backend and get rhymes back
          */
@@ -38,11 +38,13 @@
         const payload = {text: this.text};
 
         // Update URL
-        history.pushState(
-          payload,
-          this.text + ' | Nynorsk Rimordbok',
-          '/?ord=' + encodeURIComponent(this.text)
-        );
+        if(shouldPushState){
+          history.pushState(
+            payload,
+            this.text + ' | Nynorsk Rimordbok',
+            '/?ord=' + encodeURIComponent(this.text)
+          );
+        }
 
         return axios.post('/get_rhymes/', payload)
           .then((response) => {

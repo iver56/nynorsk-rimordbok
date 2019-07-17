@@ -1,6 +1,7 @@
 html, body {
   margin: 0;
   font-family: Verdana, Geneva, sans-serif;
+  padding: 0;
 }
 
 [v-cloak] {
@@ -12,6 +13,11 @@ html, body {
 h1, header a, header a:visited {
   text-decoration: none;
   color: rgb(240, 240, 240);
+}
+
+header {
+  background: #517690;
+  padding: 30px;
 }
 
 header a {
@@ -44,7 +50,7 @@ body {
   width: 100%;
   max-width: 960px;
   margin: auto;
-  padding: 40px 0;
+  padding: 60px 0;
   color:rgb(49, 49, 49);
 }
 
