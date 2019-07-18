@@ -8,6 +8,15 @@ html, body {
   display: none
 }
 
+.list {
+  display: block;
+}
+
+.mark {
+  background: #fff;
+  padding: 10px 30px;
+}
+
 /* --------- HEADER -------- */
 
 h1, header a, header a:visited {
@@ -29,7 +38,7 @@ header a {
   position: relative;
 }
 
-#logo {
+Header .logo {
   display: block;
   position: absolute;
   left: -15px;
@@ -47,12 +56,13 @@ body {
 }
 
 #data-wrapper {
+  box-sizing: border-box;
   background: #f0f0f0;
   border-radius: 2px;
   width: 100%;
   max-width: 960px;
   margin: auto;
-  padding: 60px 0;
+  padding: 60px;
   color:rgb(49, 49, 49);
 }
 
@@ -68,6 +78,10 @@ body {
   font-size: 1.3em;
   padding: 2px 3px;
   margin: 5px;
+}
+
+#data-wrapper input {
+  min-width: 280px;
 }
 
 form {
@@ -98,4 +112,51 @@ ul li {
 
 .bad-match {
   opacity: .66;
+}
+
+/* --------- FOOTER --------- */
+
+footer .logo {
+  max-width: 32px;
+  max-height: 32px;
+  display: inline-block;
+  position: relative;
+  top: 8px;
+  margin-right: 16px;
+}
+
+footer h4 {
+  display: inline-block;
+}
+
+footer, footer ul {
+  text-align: center;
+}
+
+footer ul {
+  display: block;
+  margin: 0;
+  padding: 0;
+  max-width: 600px;
+  width: 100%;
+  transform: translateX(-50%);
+  position: relative;
+  left: 50%;
+}
+
+footer ul li {
+  margin: 0 20px;
+}
+
+footer, footer a {
+  color: #fff;
+}
+
+footer a {
+  text-decoration: underline;
+}
+
+footer a:hover {
+  color: #6d93ac;
+  text-decoration: none;
 }

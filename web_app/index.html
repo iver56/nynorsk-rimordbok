@@ -23,7 +23,7 @@
 
 <body>
 <header>
-  <a href="/"><img id="logo" src="img/logo.png">
+  <a href="/"><img class="logo" src="img/logo.png">
     <h1>Nynorsk<br>Rimordbok</h1></a>
 </header>
 <div id="data-wrapper" v-cloak>
@@ -32,7 +32,6 @@
     <input
       type="text"
       v-model="text"
-      style="min-width: 280px"
       id="search"
       required
     >
@@ -42,7 +41,7 @@
   </form>
 
   <h3 v-if="!loading && result && !result.rhymes.length">
-    Me finn ingen ord som rimar på {{ text }}
+    Me finn ingen ord som rimar på {{ searchText }}
   </h3>
   <ul v-if="result">
     <li v-for="(rhyme, index) in result.rhymes">
@@ -52,6 +51,14 @@
     </li>
   </ul>
 </div>
+
+<footer>
+  <img class="logo" src="img/logo.png"><h4>Nynorsk Rimordbok</h4>
+  <ul>
+    <li><a href="page/about.html">Om Nynorsk Rimordbok</a></li>
+    <li><a href="https://arustories.com" target="_blank">arustories.com</a></li>
+  </ul>
+</footer>
 
 <script src="js/utils.js"></script>
 <script src="js/app.js"></script>

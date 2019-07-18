@@ -5,6 +5,7 @@
     el: '#data-wrapper',
     data: {
       text: '',
+      searchText: null,
       loading: false,
       result: null
     },
@@ -41,7 +42,7 @@
          * Post the word to the backend and get rhymes back
          */
         this.loading = true;
-
+        this.searchText = this.text;
         const payload = {text: this.text};
 
         // Update URL
