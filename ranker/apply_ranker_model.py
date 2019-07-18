@@ -26,20 +26,37 @@ class Ranker:
             }
 
             input_vector = self.vectorizer.vectorize_triplet(triplet).ravel()
-            flipped_input_vector = self.vectorizer.vectorize_triplet(flipped_triplet).ravel()
-            predicted_ranks = self.model.predict(np.array([input_vector, flipped_input_vector]))
+            flipped_input_vector = self.vectorizer.vectorize_triplet(
+                flipped_triplet
+            ).ravel()
+            predicted_ranks = self.model.predict(
+                np.array([input_vector, flipped_input_vector])
+            )
             predicted_rank = predicted_ranks[0]
             other_predicted_rank = -predicted_ranks[1]
             predicted_rank = (predicted_rank + other_predicted_rank) / 2
 
+            """
             if predicted_rank < 0:
-                print("{} is preferred".format(first_rhyme_candidate))
+                print(
+                    "{} is preferred over {}".format(
+                        first_rhyme_candidate, second_rhyme_candidate
+                    )
+                )
             elif predicted_rank == 0.0:
-                print("Both rhymes are considered equally good")
+                print(
+                    "{} and {} are considered equally good".format(
+                        first_rhyme_candidate, second_rhyme_candidate
+                    )
+                )
             else:
-                print("{} is preferred".format(second_rhyme_candidate))
-
+                print(
+                    "{} is preferred over {}".format(
+                        second_rhyme_candidate, first_rhyme_candidate
+                    )
+                )
+            """
             return predicted_rank
 
-        rhymes.sort(key=cmp_to_key(compare), reverse=True)
+        rhymes.sort(key=cmp_to_key(compare))
         return rhymes
