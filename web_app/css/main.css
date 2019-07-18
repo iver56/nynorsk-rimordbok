@@ -81,7 +81,9 @@ body {
 }
 
 #data-wrapper input {
-  min-width: 280px;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 280px;
 }
 
 form {
