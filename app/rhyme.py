@@ -4,10 +4,12 @@ from functools import lru_cache
 
 from app.utils import get_words
 
+import re
+
 
 @lru_cache(maxsize=9001)
 def get_rhymes(word):
-    word = word.strip().lower()
+    word = prepare_string(word).strip()
     assert type(word) == str
     assert len(word) >= 1
     words = get_words()
@@ -18,7 +20,7 @@ def get_rhymes(word):
     smaller_ending_size = max(1, max_ending_size - 1)
     smaller_ending = word[-smaller_ending_size:]
     for candidate_word in words:
-        candidate_word_lower = candidate_word.lower()
+        candidate_word_lower = prepare_string(candidate_word)
         if candidate_word_lower == word:
             # Discard, because we don't want to include the search word in the results
             continue
@@ -47,3 +49,7 @@ def get_syllables(word):
     syllable_map = map(word.lower().count, "aeiouyæøå")
     syllable_sum = sum(syllable_map)
     return syllable_sum
+
+def prepare_string(word):
+    # remove non-alphabetic characters from string
+    return re.sub(r'[^a-zA-Z ]', '', word.lower())
