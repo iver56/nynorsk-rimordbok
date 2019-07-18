@@ -1,3 +1,4 @@
+import copy
 import json
 import os
 from pathlib import Path
@@ -167,12 +168,20 @@ class Vectorizer(object):
 
 
 def get_dataset():
-    data = []
+    dataset = []
     file_paths = get_pickle_paths()
     print("Found {} examples in the dataset".format(len(file_paths)))
     for file_path in file_paths:
-        data.append(joblib.load(file_path))
-    return data
+        example = joblib.load(file_path)
+        dataset.append(example)
+
+        flipped_example = copy.deepcopy(example)
+        flipped_example["first_rhyme_candidate"] = example["second_rhyme_candidate"]
+        flipped_example["second_rhyme_candidate"] = example["first_rhyme_candidate"]
+        flipped_example["rank"] = -example["rank"]
+        dataset.append(flipped_example)
+
+    return dataset
 
 
 if __name__ == "__main__":
