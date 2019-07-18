@@ -129,3 +129,6 @@ data/*.txt
 
 # Mac Specific
 .DS_Store
+
+# Machine learning model data
+data/ranker_model/*
