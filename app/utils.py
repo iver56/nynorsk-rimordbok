@@ -22,4 +22,4 @@ def get_words():
             word = cells[2]
             words.add(word)
 
-    return words
+    return list(words)

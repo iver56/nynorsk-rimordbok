@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
+import re
+import random
 from functools import lru_cache
 
 from app.utils import get_words
-
-import re
 
 
 @lru_cache(maxsize=9001)
@@ -52,4 +52,9 @@ def get_syllables(word):
 
 def prepare_string(word):
     # remove non-alphabetic characters from string
-    return re.sub(r'[^a-zA-Z ]', '', word.lower())
+    return re.sub(r'[\.\-\"\'\/@#$%&\(\)]', '', word.lower())
+
+def get_random_word():
+    words = get_words()
+    chosen_word = random.choice(words)
+    return chosen_word

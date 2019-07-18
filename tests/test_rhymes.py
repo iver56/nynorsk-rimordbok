@@ -1,6 +1,8 @@
 import unittest
 
 from app.rhyme import get_rhymes
+from app.rhyme import get_random_word
+from app.rhyme import prepare_string
 
 
 class TestRhymes(unittest.TestCase):
@@ -60,3 +62,11 @@ class TestRhymes(unittest.TestCase):
                 trollheksa_rank = i
 
         self.assertGreater(floyelsbuksa_rank, trollheksa_rank)
+
+    def test_get_random_word(self):
+        word = get_random_word()
+        self.assertGreater(len(word), 0)
+
+    def test_prepare_string(self):
+        word = prepare_string("markør")
+        self.assertEqual("markør", word)

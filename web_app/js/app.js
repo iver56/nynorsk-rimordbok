@@ -58,7 +58,6 @@
 
         return axios.post('/api/get_rhymes/', payload)
           .then((response) => {
-            console.log(response.data);
             this.result = response.data;
 
             // Assign a URL to each rhyme
@@ -77,6 +76,21 @@
             this.loading = false;
             console.log(error);
             alert('Server communication error');
+          });
+      },
+      requestRandomWord: function() {
+        const payload = { text: this.text };
+        const title = this.text + ' | Nynorsk Rimordbok';
+        
+        history.pushState(
+          payload,
+          title,
+          '/?ord=' + encodeURIComponent(this.text)
+        );
+        return axios.get('/api/get_random_word/', payload)
+          .then((response) => {
+            this.text = response.data['random_word'];
+            this.requestRhymes();
           });
       },
     }

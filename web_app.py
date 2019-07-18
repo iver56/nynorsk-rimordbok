@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from werkzeug.exceptions import BadRequest
 
 from app.rhyme import get_rhymes as get_rhymes_function
+from app.rhyme import get_random_word as get_random_word_function
 from app.settings import DEBUG
 
 app = Flask(__name__, static_folder="web_app")
@@ -32,6 +33,12 @@ def get_rhymes():
 
     return jsonify({"rhymes": rhymes})
 
+
+@app.route("/api/get_random_word/", methods=["GET"])
+def get_random_word():
+    random_word = get_random_word_function()
+
+    return jsonify({"random_word": random_word})
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=DEBUG)

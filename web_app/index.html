@@ -36,8 +36,9 @@
       required
     >
     <button type="submit" :disabled="loading">Finn rimord</button>
+    <button :disabled="loading" v-on:click.prevent="requestRandomWord()">Tilfeldig ord</button>
     <img v-if="loading" id="loading-icon" src="/img/ajax-loader.gif"
-         alt="Leitar etter rimord...">
+    alt="Leitar etter rimord...">
   </form>
 
   <h3 v-if="!loading && result && !result.rhymes.length">
