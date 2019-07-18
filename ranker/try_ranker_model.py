@@ -1,9 +1,6 @@
-import os
-
 import joblib
 import numpy as np
 
-from ranker.make_samples import DATASET_DIR
 from ranker.train import Vectorizer
 
 if __name__ == "__main__":
