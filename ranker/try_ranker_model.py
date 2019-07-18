@@ -7,8 +7,6 @@ from ranker.make_samples import DATASET_DIR
 from ranker.train import Vectorizer
 
 if __name__ == "__main__":
-    os.makedirs(DATASET_DIR, exist_ok=True)
-
     vectorizer = Vectorizer(mode="prediction")
     model = joblib.load(Vectorizer.MODEL_FILE_PATH)
 
