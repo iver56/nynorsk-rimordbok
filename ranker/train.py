@@ -8,7 +8,6 @@ import numpy as np
 from sklearn.ensemble import ExtraTreesRegressor
 from sklearn.model_selection import KFold
 from sklearn.neighbors import KNeighborsRegressor
-from tensorflow.python.keras import backend
 from tqdm import tqdm
 
 from app.settings import DATA_DIR
@@ -106,8 +105,6 @@ class Vectorizer(object):
                     model.fit(X_train, y_train)
 
                 y_predictions = model.predict(X_test)
-
-                backend.clear_session()
 
                 num_correct_examples = 0
                 num_examples = len(y_predictions)
