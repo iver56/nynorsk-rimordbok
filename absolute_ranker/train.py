@@ -8,6 +8,7 @@ import numpy as np
 from sklearn.ensemble import ExtraTreesRegressor
 from sklearn.model_selection import KFold
 from sklearn.neighbors import KNeighborsRegressor
+from sklearn.svm import SVR
 from tqdm import tqdm
 
 from absolute_ranker.make_samples import DATASET_DIR
@@ -21,6 +22,8 @@ def get_untrained_model(input_dim, model_type):
         model = KNeighborsRegressor(weights="distance", n_neighbors=5)
     elif model_type == "et":
         model = ExtraTreesRegressor(n_estimators=10)
+    elif model_type == "svr":
+        model = SVR()
     else:
         raise Exception("Unknown model type")
     return model
@@ -95,7 +98,7 @@ class Vectorizer(object):
                 y_train, y_test = y[train_index], y[test_index]
 
                 model = get_untrained_model(input_dim, model_type)
-                if model_type == "et":
+                if model_type in ("et", "svr"):
                     model.fit(X_train, y_train.ravel())
                 else:
                     model.fit(X_train, y_train)
@@ -111,8 +114,8 @@ class Vectorizer(object):
                     y_prediction = float(y_prediction)
                     absolute_error = abs(y_prediction - y_test[i][0])
                     absolute_errors.append(absolute_error)
-                    y_prediction = max(-1.0, y_prediction)
-                    y_prediction = min(1.0, y_prediction)
+                    y_prediction = max(1.0, y_prediction)
+                    y_prediction = min(5.0, y_prediction)
                     y_prediction = round(y_prediction)
                     if y_prediction == y_test[i][0]:
                         num_correct_examples += 1
@@ -128,7 +131,7 @@ class Vectorizer(object):
 
         # Fit model on all data
         model = get_untrained_model(input_dim, model_type)
-        if model_type == "et":
+        if model_type in ("et", "svr"):
             model.fit(x, y.ravel())
             joblib.dump(model, self.MODEL_FILE_PATH)
         else:
