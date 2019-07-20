@@ -27,7 +27,9 @@ def get_untrained_model(input_dim, model_type):
 
 
 class Vectorizer(object):
-    METADATA_FILE_PATH = os.path.join(DATA_DIR / "absolute_ranker_model" / "metadata.json")
+    METADATA_FILE_PATH = os.path.join(
+        DATA_DIR / "absolute_ranker_model" / "metadata.json"
+    )
     MODEL_FILE_PATH = os.path.join(DATA_DIR / "absolute_ranker_model" / "model.pkl")
     MAX_STRING_LENGTH = 5  # the last characters of the word, not the first
 
@@ -39,12 +41,10 @@ class Vectorizer(object):
                 self.preprocess_word(example["search_word"]) for example in dataset
             ]
             rhyme_candidates = [
-                self.preprocess_word(example["rhyme_candidate"])
-                for example in dataset
+                self.preprocess_word(example["rhyme_candidate"]) for example in dataset
             ]
-            characters = (
-                set("".join(search_words))
-                .union(set("".join(rhyme_candidates)))
+            characters = set("".join(search_words)).union(
+                set("".join(rhyme_candidates))
             )
             ordered_characters = sorted(list(characters))
             print("Characters: {}".format(ordered_characters))
@@ -156,10 +156,18 @@ class Vectorizer(object):
         rhyme_candidate_vector = self.vectorize_string(
             rhyme_ranking_object["rhyme_candidate"]
         )
+        do_first_letters_match = (
+            rhyme_ranking_object["search_word"].upper()
+            == rhyme_ranking_object["rhyme_candidate"].upper()
+        )
+        do_first_letters_match_feature = 1 if do_first_letters_match else 0
 
-        input_vector = np.array(
-            search_word_vector
-            + rhyme_candidate_vector
+        input_vector = np.concatenate(
+            (
+                np.array(search_word_vector).flatten(),
+                np.array(rhyme_candidate_vector).flatten(),
+                [do_first_letters_match_feature],
+            )
         )
         return input_vector
 
