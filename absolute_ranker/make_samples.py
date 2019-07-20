@@ -15,7 +15,12 @@ def save_example(search_word, rhyme_candidate, score):
     """
     :param search_word:
     :param rhyme_candidate:
-    :param rank: 0 means not a rhyme, 3 means a good rhyme
+    :param rank:
+    * 1: not a rhyme
+    * 2: letter rhyme
+    * 3: bad rhyme
+    * 4: good rhyme
+    * 5: very good rhyme
     :return:
     """
     data = {
@@ -56,12 +61,12 @@ if __name__ == "__main__":
 
         print("{}".format(rhyme_candidate))
         answer = input(
-            "How good is the rhyme on a scale from 0 to 3? Alternatively, discard (d)\n> "
+            "How good is the rhyme on a scale from 1 to 5? Alternatively, discard (d)\n> "
         )
         score = 0
         if not answer or answer.startswith("d"):
             continue
-        elif answer in ("0", "1", "2", "3"):
+        elif answer in ("1", "2", "3", "4", "5"):
             score = int(answer)
         elif answer.startswith("q"):
             print("Quitting")
