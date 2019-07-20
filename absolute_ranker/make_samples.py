@@ -15,7 +15,7 @@ def save_example(search_word, rhyme_candidate, score):
     """
     :param search_word:
     :param rhyme_candidate:
-    :param rank:
+    :param score:
     * 1: not a rhyme
     * 2: letter rhyme
     * 3: bad rhyme
