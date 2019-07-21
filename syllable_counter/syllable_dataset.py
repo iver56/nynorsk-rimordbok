@@ -73,6 +73,7 @@ SYLLABLE_COUNT_EXAMPLES = {
     "yrkesrettleiing": 5,
     "zodiakalljosa": 6,
     "zirkonium": 4,
+    "kokainsmuglaren": 6,
 }
 
 HIATUS_WORDS = {
@@ -80,6 +81,7 @@ HIATUS_WORDS = {
     "koffein": "koffe_in",
     "naiv": "na_iv",
     "ruin": "ru_in",
+    "kokain": "koka_in",
 }
 
 DIPHTHONG_WORDS = {
