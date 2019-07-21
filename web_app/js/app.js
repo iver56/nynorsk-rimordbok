@@ -95,4 +95,33 @@
       },
     }
   });
+
+  Vue.component('nrheader', {
+    template: `
+      <header>
+        <a href="/"><img class="logo" src="../img/logo.svg">
+          <h1>Nynorsk<br>Rimordbok</h1></a>
+      </header>`
+  });
+
+  Vue.component('nrfooter', {
+    template: `
+    <div>
+      <img class="logo" src="../img/logo.svg">
+      <h4>Nynorsk Rimordbok</h4>
+      <ul>
+        <li><a href="../page/about.html">Om Nynorsk Rimordbok</a></li>
+        <li><a href="https://arustories.com" target="_blank">arustories.com</a></li>
+      </ul>
+    </div>
+    `
+  });
+
+  new Vue({
+    el: "#header"
+  });
+
+  new Vue({
+    el: "#footer"
+  });
 })();
