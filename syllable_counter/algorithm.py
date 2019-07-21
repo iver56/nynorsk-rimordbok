@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from syllable_counter.syllable_dataset import (
     SYLLABLE_COUNT_EXAMPLES,
     HIATUS_WORDS,
@@ -10,11 +12,6 @@ def count_syllables(word, use_lookup=True):
         return SYLLABLE_COUNT_EXAMPLES[word]
 
     word = word.lower()
-
-    word = word.replace("á", "a")
-    word = word.replace("à", "a")
-    word = word.replace("ó", "o")
-    word = word.replace("ò", "o")
 
     for hiatus_word in HIATUS_WORDS:
         if hiatus_word in word:
@@ -31,7 +28,7 @@ def count_syllables(word, use_lookup=True):
     word = word.replace("oi", "ô")
     word = word.replace("oy", "ô")
 
-    syllable_map = map(word.lower().count, "aeiouyæøåäëâöô")
+    syllable_map = map(word.lower().count, "aeiouyæøåäëâöôêéóòàá")
     syllable_sum = sum(syllable_map)
     return syllable_sum
 

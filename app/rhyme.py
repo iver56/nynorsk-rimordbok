@@ -27,11 +27,10 @@ def get_rhymes(word):
             continue
 
         if candidate_word_lower.endswith(smaller_ending):
-            num_syllables = count_syllables(candidate_word)
-            rhyme = {"word": candidate_word, "score": 100, "num_syllables": num_syllables}
+            rhyme = {"word": candidate_word, "score": 100}
 
             if candidate_word_lower.endswith(max_ending):
-                rhyme['score'] *= 2
+                rhyme["score"] *= 2
 
             if candidate_word.lower().endswith(word):
                 rhyme["score"] *= 0.3
@@ -43,12 +42,15 @@ def get_rhymes(word):
     # Limit the number of words in the result
     rhymes = rhymes[0:500]
 
+    for rhyme in rhymes:
+        rhyme["num_syllables"] = count_syllables(rhyme["word"])
+
     return rhymes
 
 
 def prepare_string(word):
     # remove non-alphabetic characters from string
-    return re.sub(r'[\.\-\"\'\/@#$%&\(\)]', '', word.lower())
+    return re.sub(r"[\.\-\"\'\/@#$%&\(\)]", "", word.lower())
 
 
 def get_random_word():
