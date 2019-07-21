@@ -169,6 +169,12 @@ SYLLABLE_COUNT_EXAMPLES = {
     "louis-seize-stilane": 6,
     "countryfestivalane": 7,
     "EØS-avtalane": 7,
+    "TV-kjendisen": 5,
+    "dvd-spelarane": 7,
+    "ml-arane": 5,
+    "C-durane": 4,
+    "cd-spelar": 4,
+    "CD-spelar": 4
 }
 
 HIATUS_WORDS = {
