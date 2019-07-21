@@ -162,6 +162,13 @@ SYLLABLE_COUNT_EXAMPLES = {
     "pr-ane": 4,
     "EDB-anlegget": 6,
     "sleeping partner-opplegget": 7,
+    "MC-miljøet": 5,
+    "DH-skolane": 5,
+    "c-nyklane": 4,
+    "l-ane": 3,
+    "louis-seize-stilane": 6,
+    "countryfestivalane": 7,
+    "EØS-avtalane": 7,
 }
 
 HIATUS_WORDS = {
@@ -334,4 +341,7 @@ DIPHTHONG_WORDS = {
     "teasan": "tisan",
     "teasedans": "tisdans",
     "sleep": "slip",
+    "louis": "luis",
+    "seize": "sæs",
+    "country": "cøntry",
 }
