@@ -5,6 +5,7 @@ import random
 from functools import lru_cache
 
 from app.utils import get_words
+from syllable_counter.algorithm import count_syllables
 
 
 @lru_cache(maxsize=9001)
@@ -26,8 +27,8 @@ def get_rhymes(word):
             continue
 
         if candidate_word_lower.endswith(smaller_ending):
-            word_syllables = get_syllables(candidate_word)
-            rhyme = {"word": candidate_word, "score": 100, "syllables": word_syllables}
+            num_syllables = count_syllables(candidate_word)
+            rhyme = {"word": candidate_word, "score": 100, "num_syllables": num_syllables}
 
             if candidate_word_lower.endswith(max_ending):
                 rhyme['score'] *= 2
@@ -45,14 +46,10 @@ def get_rhymes(word):
     return rhymes
 
 
-def get_syllables(word):
-    syllable_map = map(word.lower().count, "aeiouyæøå")
-    syllable_sum = sum(syllable_map)
-    return syllable_sum
-
 def prepare_string(word):
     # remove non-alphabetic characters from string
     return re.sub(r'[\.\-\"\'\/@#$%&\(\)]', '', word.lower())
+
 
 def get_random_word():
     words = get_words()
