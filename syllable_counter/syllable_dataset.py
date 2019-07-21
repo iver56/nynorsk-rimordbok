@@ -152,6 +152,16 @@ SYLLABLE_COUNT_EXAMPLES = {
     "stripteasedansarinnone": 7,
     "bijouteri": 4,
     "stripteasen": 3,
+    "GPS-sendarane": 7,
+    "g-kraftene": 4,
+    "ep-platene": 5,
+    "A-paktene": 4,
+    "T-stålet": 3,
+    "i-målet": 3,
+    "ikkje-leiande": 5,
+    "pr-ane": 4,
+    "EDB-anlegget": 6,
+    "sleeping partner-opplegget": 7,
 }
 
 HIATUS_WORDS = {
@@ -322,4 +332,6 @@ DIPHTHONG_WORDS = {
     "teasen": "tisen",
     "teasar": "tisar",
     "teasan": "tisan",
+    "teasedans": "tisdans",
+    "sleep": "slip",
 }
