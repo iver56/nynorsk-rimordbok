@@ -28,7 +28,7 @@ class TestRhymes(unittest.TestCase):
         rhymes = get_rhymes("daggry")
         for rhyme in rhymes:
             if rhyme["word"] == "morgongry":
-                self.assertIn(3, [rhyme["syllables"]])
+                self.assertEqual(3, rhyme["num_syllables"])
 
     def test_ranking_when_rhyme_ends_with_search_word(self):
         rhymes = get_rhymes("bark")
