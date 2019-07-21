@@ -8,10 +8,10 @@ from app.settings import DEBUG
 app = Flask(__name__, static_folder="web_app")
 
 if DEBUG:
+
     @app.route("/")
     def root():
         return app.send_static_file("index.html")
-
 
     @app.route("/<path:path>")
     def static_proxy(path):
@@ -31,7 +31,26 @@ def get_rhymes():
 
     rhymes = get_rhymes_function(text)
 
-    return jsonify({"rhymes": rhymes})
+    # Group the rhymes by number syllables
+    rhymes_by_num_syllables = {}
+    for rhyme in rhymes:
+        if rhyme["num_syllables"] not in rhymes_by_num_syllables:
+            rhymes_by_num_syllables[rhyme["num_syllables"]] = []
+
+        rhymes_by_num_syllables[rhyme["num_syllables"]].append(rhyme)
+
+    groups = []
+    for num_syllables in rhymes_by_num_syllables:
+        groups.append(
+            {
+                "num_syllables": num_syllables,
+                "rhymes": rhymes_by_num_syllables[num_syllables],
+            }
+        )
+
+    groups.sort(key=lambda group: group["num_syllables"])
+
+    return jsonify({"groups": groups})
 
 
 @app.route("/api/get_random_word/", methods=["GET"])
@@ -39,6 +58,7 @@ def get_random_word():
     random_word = get_random_word_function()
 
     return jsonify({"random_word": random_word})
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=DEBUG)

@@ -41,16 +41,20 @@
     alt="Leitar etter rimord...">
   </form>
 
-  <h3 v-if="!loading && result && !result.rhymes.length">
+  <h3 v-if="!loading && result && !result.groups.length">
     Me finn ingen ord som rimar på {{ searchText }}
   </h3>
-  <ul v-if="result">
-    <li v-for="(rhyme, index) in result.rhymes">
-      <a :class="rhyme.score > 100 ? 'good-match' : (rhyme.score < 80 ? 'bad-match' : '')"
-         :href="rhyme.url"
-         target="_blank">{{ rhyme.word }}</a>{{ index < result.rhymes.length - 1 ? ',' : '' }}
-    </li>
-  </ul>
+  
+  <div v-for="group in result && result.groups">
+    <h3>{{ group.num_syllables }} {{ group.num_syllables === 1 ? 'staving' : 'stavingar' }}</h3>
+    <ul>
+      <li v-for="(rhyme, index) in group.rhymes">
+        <a :class="rhyme.score > 100 ? 'good-match' : (rhyme.score < 80 ? 'bad-match' : '')"
+           :href="rhyme.url"
+           target="_blank">{{ rhyme.word }}</a>{{ index < result.groups.length - 1 ? ',' : '' }}
+      </li>
+    </ul>
+  </div>
 </div>
 
 <footer>
