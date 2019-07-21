@@ -182,11 +182,11 @@ SYLLABLE_COUNT_EXAMPLES = {
     "cowboyfilmen": 4,
     "rock'n roll": 3,
     "ekvatorialguineanen": 9,
-    'V6-kupong': 4,
-    'IQ-test': 3,
-    'HMS': 3,
-    'T-shirts': 2,
-    
+    "V6-kupong": 4,
+    "IQ-test": 3,
+    "HMS": 3,
+    "T-shirts": 2,
+    "rendezvous": 3,
 }
 
 HIATUS_WORDS = {
@@ -365,4 +365,5 @@ DIPHTHONG_WORDS = {
     "paraguay": "paraguai",
     "uruguay": "uruguai",
     "guinea": "ginea",
+    'rendezvous': 'rendezvos'
 }
