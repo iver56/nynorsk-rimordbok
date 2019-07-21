@@ -169,6 +169,24 @@ SYLLABLE_COUNT_EXAMPLES = {
     "louis-seize-stilane": 6,
     "countryfestivalane": 7,
     "EØS-avtalane": 7,
+    "binde-s-en": 4,
+    "Mathiesen": 3,
+    "CD-ROM-ane": 5,
+    "TV-skjermane": 5,
+    "M-ane": 3,
+    "retro-versjonane": 6,
+    "paraguay": 4,
+    "uruguay": 4,
+    "u-hjelparar": 4,
+    "FM-mottakarar": 6,
+    "cowboyfilmen": 4,
+    "rock'n roll": 3,
+    "ekvatorialguineanen": 9,
+    'V6-kupong': 4,
+    'IQ-test': 3,
+    'HMS': 3,
+    'T-shirts': 2,
+    
 }
 
 HIATUS_WORDS = {
@@ -344,4 +362,7 @@ DIPHTHONG_WORDS = {
     "louis": "luis",
     "seize": "sæs",
     "country": "cøntry",
+    "paraguay": "paraguai",
+    "uruguay": "uruguai",
+    "guinea": "ginea",
 }
