@@ -121,6 +121,7 @@ SYLLABLE_COUNT_EXAMPLES = {
     "conquistadorar": 5,
     "containerskip": 4,
     "siouxindianaren": 6,
+    "zooane": 3,
 }
 
 HIATUS_WORDS = {
@@ -275,4 +276,5 @@ DIPHTHONG_WORDS = {
     "boutique": "botik",
     "conquist": "conqist",
     "sioux": "su",
+    "zoo": "zo",
 }
