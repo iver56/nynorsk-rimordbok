@@ -10,11 +10,9 @@ Install python 3.6
 
 Install requirements: `pip install -r requirements.txt`
 
-# Usage
+# Development
 
 Run server: `python web_app.py`
-
-# Development
 
 ## Code style
 
@@ -31,3 +29,11 @@ Now go to http://localhost to see if it works
 ## Testing
 
 Run tests: `pytest`
+
+# Deployment
+
+First, check that the latest commit is green (i.e. the tests are OK). CircleCI is in charge of running the tests.
+
+Docker images get built automatically by Docker Hub after commits are pushed to master. Check that the latest build succeeded.
+
+To deploy the latest docker image, run `docker pull iverjo/nynorsk-rimordbok && docker stop nynorsk-rimordbok && docker rm nynorsk-rimordbok && docker run -d -p 80:80 --name="nynorsk-rimordbok" iverjo/nynorsk-rimordbok` on the production VM.
