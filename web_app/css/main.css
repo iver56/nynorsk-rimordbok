@@ -57,6 +57,16 @@ body {
   /* background: #8db2cc; */
 }
 
+#definition {
+  color: #444;
+  width: 30%;
+  margin: 10px auto;
+  text-align: center;
+}
+#definition a {
+  color: #444;
+}
+
 #data-wrapper {
   box-sizing: border-box;
   background: #f0f0f0;
