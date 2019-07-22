@@ -26,7 +26,7 @@
         }
 
       };
-
+      
       const word = findGetParameter('ord');
       if (word) {
         this.text = word;
@@ -45,6 +45,7 @@
         /**
          * Post the word to the backend and get rhymes back
          */
+        this.select();
         this.errorMessage = null;
         this.loading = true;
         this.searchText = this.text;
@@ -101,6 +102,10 @@
             this.requestRhymes();
           });
       },
+      select: function() {
+        const searchfield = document.querySelector("#search");
+        searchfield.select();
+      }
     }
   });
 

@@ -29,6 +29,7 @@
 
   <form v-on:submit.prevent="requestRhymes()">
     <input
+      @click="select()"
       type="text"
       v-model="text"
       id="search"
