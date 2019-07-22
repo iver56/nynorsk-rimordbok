@@ -7,7 +7,8 @@
       text: '',
       searchText: null,
       loading: false,
-      result: null
+      result: null,
+      errorMessage: null
     },
     created: function() {
       // When the user clicks "back" in the browser, to view the previous search, onpopstate
@@ -15,10 +16,12 @@
       window.onpopstate = (event) => {
         if (event.state && event.state.text) {
           this.text = event.state.text;
+          this.errorMessage = null;
           this.requestRhymes(false);
         } else {
           this.text = '';
           this.result = null;
+          this.errorMessage = null;
           document.title = 'Nynorsk Rimordbok';
         }
 
@@ -27,6 +30,7 @@
       const word = findGetParameter('ord');
       if (word) {
         this.text = word;
+        this.errorMessage = null;
         this.requestRhymes();
       } else {
         setTimeout(function() {
@@ -41,6 +45,7 @@
         /**
          * Post the word to the backend and get rhymes back
          */
+        this.errorMessage = null;
         this.loading = true;
         this.searchText = this.text;
         const payload = {text: this.text};
@@ -64,10 +69,10 @@
             for (let group of this.result.groups) {
               for (let rhyme of group.rhymes) {
                 if (rhyme.word[0] === rhyme.word[0].toUpperCase()) {
-                  rhyme.url = 'https://no.wikipedia.org/wiki/' + encodeURIComponent(rhyme.word)
-                } else {
                   // If the first letter is uppercase, it's probably an "egennamn". In that
                   // case, we link to Wikipedia
+                  rhyme.url = 'https://no.wikipedia.org/wiki/' + encodeURIComponent(rhyme.word)
+                } else {
                   rhyme.url = 'https://ordbok.uib.no/perl/ordbok.cgi?OPP=' +
                     encodeURIComponent(rhyme.word) + '&ant_nynorsk=5&nynorsk=+&ordbok=nynorsk';
                 }
@@ -78,8 +83,7 @@
           })
           .catch((error) => {
             this.loading = false;
-            console.log(error);
-            alert('Server communication error');
+            this.errorMessage = "Søket må innehalde minst ein bokstav.";
           });
       },
       requestRandomWord: function() {

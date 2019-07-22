@@ -43,10 +43,13 @@
   <h3 v-if="!loading && result && !result.groups.length">
     Me finn ingen ord som rimar på {{ searchText }}
   </h3>
-  <div v-if="result && searchText !== ''" id="definition">
+  <h3 v-if="!loading && errorMessage">
+    {{ errorMessage }}
+  </h3>
+  <div v-if="!errorMessage && result && searchText !== ''" id="definition">
     definisjonen av <a target="_blank" :href="'https://ordbok.uib.no/perl/ordbok.cgi?OPP='+searchText+'&ant_nynorsk=5&nynorsk=+&ordbok=nynorsk'">{{searchText}}</a>
   </div>
-  <div v-for="group in result && result.groups">
+  <div v-if="!errorMessage" v-for="group in result && result.groups">
     <h3>{{ group.num_syllables }} {{ group.num_syllables === 1 ? 'staving' : 'stavingar' }}</h3>
     <ul>
       <li v-for="(rhyme, index) in group.rhymes">
