@@ -174,7 +174,7 @@ SYLLABLE_COUNT_EXAMPLES = {
     "ml-arane": 5,
     "C-durane": 4,
     "cd-spelar": 4,
-    "CD-spelar": 4
+    "CD-spelar": 4,
     "binde-s-en": 4,
     "Mathiesen": 3,
     "CD-ROM-ane": 5,
