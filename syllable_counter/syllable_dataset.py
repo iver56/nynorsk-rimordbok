@@ -193,6 +193,7 @@ SYLLABLE_COUNT_EXAMPLES = {
     "HMS": 3,
     "T-shirts": 2,
     "rendezvous": 3,
+    "tease": 1
 }
 
 HIATUS_WORDS = {
