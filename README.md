@@ -36,4 +36,37 @@ First, check that the latest commit is green (i.e. the tests are OK). CircleCI i
 
 Docker images get built automatically by Docker Hub after commits are pushed to master. Check that the latest build succeeded.
 
-To deploy the latest docker image, run `docker pull iverjo/nynorsk-rimordbok && docker stop nynorsk-rimordbok && docker rm nynorsk-rimordbok && docker run -d -p 80:80 --name="nynorsk-rimordbok" iverjo/nynorsk-rimordbok` on the production VM.
+If you are setting up the server for the first time, run the following commands (after replacing
+email@example.org with your actual email address):
+
+```
+docker run --detach \
+    --name nginx-proxy \
+    --publish 80:80 \
+    --publish 443:443 \
+    --volume /etc/nginx/certs \
+    --volume /etc/nginx/vhost.d \
+    --volume /usr/share/nginx/html \
+    --volume /var/run/docker.sock:/tmp/docker.sock:ro \
+    jwilder/nginx-proxy
+
+docker run --detach \
+    --name nginx-proxy-letsencrypt \
+    --volumes-from nginx-proxy \
+    --volume /var/run/docker.sock:/var/run/docker.sock:ro \
+    --env "DEFAULT_EMAIL=email@example.org" \
+    jrcs/letsencrypt-nginx-proxy-companion
+
+docker run --detach \
+    --name nynorsk-rimordbok \
+    --env "VIRTUAL_HOST=nynorskrimordbok.no" \
+    --env "LETSENCRYPT_HOST=nynorskrimordbok.no" \
+    iverjo/nynorsk-rimordbok
+```
+
+If these containers are already running on the server, and you want to deploy the latest version
+of the `iverjo/nynorsk-rimordbok` image, run this command instead:
+
+```
+docker pull iverjo/nynorsk-rimordbok && docker stop nynorsk-rimordbok && docker rm nynorsk-rimordbok && docker run --detach --name nynorsk-rimordbok --env "VIRTUAL_HOST=nynorskrimordbok.no" --env "LETSENCRYPT_HOST=nynorskrimordbok.no" iverjo/nynorsk-rimordbok
+```
