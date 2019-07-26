@@ -28,7 +28,7 @@ def count_syllables(word, use_lookup=True):
     word = word.replace("oi", "ô")
     word = word.replace("oy", "ô")
 
-    syllable_map = map(word.lower().count, "aeiouyæøåäëâöôêéóòàá")
+    syllable_map = map(word.lower().count, "aeiouyæøåäëâöôêéóòàáù")
     syllable_sum = sum(syllable_map)
     return syllable_sum
 
