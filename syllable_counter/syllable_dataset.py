@@ -298,6 +298,7 @@ SYLLABLE_COUNT_EXAMPLES = {
     "capriccioen": 5,
     "curaçaoen": 4,
     "Guernsey": 2,
+    "rùnane": 3,
 }
 
 HIATUS_WORDS = {
