@@ -237,7 +237,7 @@ SYLLABLE_COUNT_EXAMPLES = {
     "C-14-dateringer": 7,
     "IKT": 3,
     "HV-distrikt": 4,
-    "initiativrikt": 6,  # or 5? not sure
+    "initiativrikt": 6,
     "initiativlausare": 8,
     "TV-omformarar": 6,
     "US-dollarar": 5,
@@ -293,7 +293,7 @@ SYLLABLE_COUNT_EXAMPLES = {
     "Nicolay": 3,
     "intimspray": 3,
     "still going strong": 4,
-    "kakaoen": 3,  # or 4? not sure
+    "kakaoen": 4,
     "quebrachoen": 4,
     "capriccioen": 5,
     "curaçaoen": 4,
