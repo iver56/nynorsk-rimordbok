@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import re
 import random
+import re
 from functools import lru_cache
+from urllib.parse import quote
 
 from app.utils import get_words
 from syllable_counter.algorithm import count_syllables
@@ -44,6 +45,16 @@ def get_rhymes(word):
 
     for rhyme in rhymes:
         rhyme["num_syllables"] = count_syllables(rhyme["word"])
+        if rhyme["word"][0] == rhyme["word"][0].upper():
+            # If the first letter is uppercase, it's probably an "egennamn". In that
+            # case, we link to Wikipedia
+            rhyme["url"] = "https://no.wikipedia.org/wiki/" + quote(rhyme["word"])
+        else:
+            rhyme["url"] = (
+                "https://ordbok.uib.no/perl/ordbok.cgi?OPP="
+                + quote(rhyme["word"])
+                + "&ant_nynorsk=5&nynorsk=+&ordbok=nynorsk"
+            )
 
     return rhymes
 

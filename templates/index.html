@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="nn">
+
+<head>
+  <meta charset="UTF-8">
+  <title>{% if text %}{{ text }} | {% endif %}Nynorsk Rimordbok</title>
+  <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
+
+  <!-- Google Analytics -->
+  <script>
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', 'UA-144018055-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
+  <!-- End Google Analytics -->
+
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+
+<body>
+<div id="header">
+  <header>
+    <a href="/"><img class="logo" src="/img/logo_2.svg">
+      <h1>Nynorsk<br>Rimordbok</h1></a>
+  </header>
+</div>
+<div id="data-wrapper">
+
+  <form method="GET">
+    <input
+      autofocus
+      type="text"
+      id="search"
+      autocomplete="off"
+      name="q"
+      required
+      maxlength="40"
+      {% if text %}value="{{ text }}"{% endif %}
+    >
+    <button type="submit">Finn rimord</button>
+    <button onclick="location.href='/random_word/'; return false;">Tilfeldig ord</button>
+  </form>
+
+  {% if groups and text %}
+    <div id="definition">
+      Ord som rimar på
+      <a
+        target="_blank"
+        href="https://ordbok.uib.no/perl/ordbok.cgi?OPP={{ text | urlencode }}&ant_nynorsk=5&nynorsk=+&ordbok=nynorsk"
+      >{{ text }}</a>:
+    </div>
+    {% for group in groups %}
+    <div>
+      <h3>{{ group.num_syllables }} {% if group.num_syllables == 1 %}staving{% else %}stavingar{% endif %}</h3>
+      <ul>
+        {% for rhyme in group.rhymes %}
+        <li>
+          <a class="{% if rhyme.score > 100 %}good-match{% elif rhyme.score < 80 %}bad-match{% endif %}"
+             href="{{ rhyme.url }}"
+             target="_blank">{{ rhyme.word }}</a>,
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  {% elif text %}
+    <h3 v-if="result.groups.length == 0">
+      Me finn ingen ord som rimar på {{ text }}
+    </h3>
+  {% endif %}
+</div>
+
+<footer id="footer">
+  <div>
+    <img class="logo" src="../img/logo_2.svg">
+    <h4>Nynorsk Rimordbok</h4>
+    <ul>
+      <li><a href="/page/about.html">Om Nynorsk Rimordbok</a></li>
+      <li><a href="https://arustories.com" target="_blank">arustories.com</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+
+</html>

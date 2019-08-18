@@ -1,4 +1,6 @@
-from flask import Flask, request, jsonify
+from urllib.parse import quote
+
+from flask import Flask, request, jsonify, render_template, redirect
 from werkzeug.exceptions import BadRequest
 
 from app.rhyme import get_rhymes as get_rhymes_function
@@ -9,55 +11,50 @@ app = Flask(__name__, static_folder="web_app")
 
 if DEBUG:
 
-    @app.route("/")
-    def root():
-        return app.send_static_file("index.html")
-
     @app.route("/<path:path>")
     def static_proxy(path):
         # send_static_file will guess the correct MIME type
         return app.send_static_file(path)
 
 
-@app.route("/api/get_rhymes/", methods=["POST"])
-def get_rhymes():
-    text = request.json.get("text", "")
+@app.route("/")
+def root():
+    text = request.args.get("q", None)
+    groups = None
 
-    if len(text) == 0:
-        raise BadRequest("The text empty")
+    if text:
+        if len(text) > 40:
+            raise BadRequest("The text is too long")
 
-    if len(text) > 40:
-        raise BadRequest("The text is too long")
+        rhymes = get_rhymes_function(text)
 
-    rhymes = get_rhymes_function(text)
+        # Group the rhymes by number syllables
+        rhymes_by_num_syllables = {}
+        for rhyme in rhymes:
+            if rhyme["num_syllables"] not in rhymes_by_num_syllables:
+                rhymes_by_num_syllables[rhyme["num_syllables"]] = []
 
-    # Group the rhymes by number syllables
-    rhymes_by_num_syllables = {}
-    for rhyme in rhymes:
-        if rhyme["num_syllables"] not in rhymes_by_num_syllables:
-            rhymes_by_num_syllables[rhyme["num_syllables"]] = []
+            rhymes_by_num_syllables[rhyme["num_syllables"]].append(rhyme)
 
-        rhymes_by_num_syllables[rhyme["num_syllables"]].append(rhyme)
+        groups = []
+        for num_syllables in rhymes_by_num_syllables:
+            groups.append(
+                {
+                    "num_syllables": num_syllables,
+                    "rhymes": rhymes_by_num_syllables[num_syllables],
+                }
+            )
 
-    groups = []
-    for num_syllables in rhymes_by_num_syllables:
-        groups.append(
-            {
-                "num_syllables": num_syllables,
-                "rhymes": rhymes_by_num_syllables[num_syllables],
-            }
-        )
+        groups.sort(key=lambda group: group["num_syllables"])
 
-    groups.sort(key=lambda group: group["num_syllables"])
-
-    return jsonify({"groups": groups})
+    return render_template("index.html", groups=groups, text=text)
 
 
-@app.route("/api/get_random_word/", methods=["GET"])
+@app.route("/random_word/", methods=["GET"])
 def get_random_word():
     random_word = get_random_word_function()
 
-    return jsonify({"random_word": random_word})
+    return redirect("/?q={}".format(quote(random_word)))
 
 
 if __name__ == "__main__":
