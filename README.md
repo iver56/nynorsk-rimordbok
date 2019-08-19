@@ -71,5 +71,5 @@ If these containers are already running on the server, and you want to deploy th
 of the `iverjo/nynorsk-rimordbok` image, run this command instead:
 
 ```
-docker pull iverjo/nynorsk-rimordbok && docker stop nynorsk-rimordbok && docker rm nynorsk-rimordbok && docker run --detach --name nynorsk-rimordbok --env "VIRTUAL_HOST=nynorskrimordbok.no" --env "LETSENCRYPT_HOST=nynorskrimordbok.no" iverjo/nynorsk-rimordbok
+docker pull iverjo/nynorsk-rimordbok && docker stop nynorsk-rimordbok && docker rm nynorsk-rimordbok && docker run --detach --name nynorsk-rimordbok --env "VIRTUAL_HOST=nynorskrimordbok.no" --env "LETSENCRYPT_HOST=nynorskrimordbok.no" --restart always iverjo/nynorsk-rimordbok
 ```
