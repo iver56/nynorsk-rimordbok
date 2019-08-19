@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}{% if text %}{{ text }} | {% endif %}Nynorsk Rimordbok{% endblock %}
+
+{% block content %}
+<form method="GET">
+  <input
+    autofocus
+    type="text"
+    id="search"
+    autocomplete="off"
+    name="q"
+    required
+    maxlength="40"
+    {% if text %}value="{{ text }}"{% endif %}
+  >
+  <button type="submit">Finn rimord</button>
+  <button onclick="location.href='/random_word/'; return false;">Tilfeldig ord</button>
+</form>
+
+{% if groups and text %}
+  <div id="definition">
+    Ord som rimar på
+    <a
+      target="_blank"
+      href="https://ordbok.uib.no/perl/ordbok.cgi?OPP={{ text | urlencode }}&ant_nynorsk=5&nynorsk=+&ordbok=nynorsk"
+      rel="noopener"
+    >{{ text }}</a>:
+  </div>
+  {% for group in groups %}
+  <div>
+    <h3>{{ group.num_syllables }} {% if group.num_syllables == 1 %}staving{% else %}stavingar{% endif %}</h3>
+    <ul>
+      {% for rhyme in group.rhymes %}
+      <li>
+        <a class="{% if rhyme.score > 100 %}good-match{% elif rhyme.score < 80 %}bad-match{% endif %}"
+           href="{{ rhyme.url }}"
+           target="_blank"
+           rel="noopener"
+        >{{ rhyme.word }}</a>,
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endfor %}
+{% elif text %}
+  <h3 v-if="result.groups.length == 0">
+    Me finn ingen ord som rimar på {{ text }}
+  </h3>
+{% endif %}
+
+{% endblock %}

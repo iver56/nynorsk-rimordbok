@@ -22,7 +22,7 @@ Format your python code with `black`. Set up your IDE to obey `.editorconfig`.
 
 Build docker image: `docker build -t nynorsk-rimordbok .`
 
-Run docker image: `docker run -d -p 80:80 --name="nynorsk-rimordbok" nynorsk-rimordbok`
+Run docker image: `docker run --rm -it -p 80:80 nynorsk-rimordbok`
 
 Now go to http://localhost to see if it works
 
@@ -48,6 +48,7 @@ docker run --detach \
     --volume /etc/nginx/vhost.d \
     --volume /usr/share/nginx/html \
     --volume /var/run/docker.sock:/tmp/docker.sock:ro \
+    --restart always \
     jwilder/nginx-proxy
 
 docker run --detach \
@@ -55,12 +56,14 @@ docker run --detach \
     --volumes-from nginx-proxy \
     --volume /var/run/docker.sock:/var/run/docker.sock:ro \
     --env "DEFAULT_EMAIL=email@example.org" \
+    --restart always \
     jrcs/letsencrypt-nginx-proxy-companion
 
 docker run --detach \
     --name nynorsk-rimordbok \
     --env "VIRTUAL_HOST=nynorskrimordbok.no" \
     --env "LETSENCRYPT_HOST=nynorskrimordbok.no" \
+    --restart always \
     iverjo/nynorsk-rimordbok
 ```
 
