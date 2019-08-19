@@ -4,10 +4,6 @@ html, body {
   padding: 0;
 }
 
-[v-cloak] {
-  display: none
-}
-
 .list {
   display: block;
 }
@@ -54,7 +50,6 @@ h1 {
 
 body {
   background: #3e3e3e;
-  /* background: #8db2cc; */
 }
 
 #definition {

@@ -50,6 +50,11 @@ def root():
     return render_template("index.html", groups=groups, text=text)
 
 
+@app.route("/about/")
+def about():
+    return render_template("about.html")
+
+
 @app.route("/random_word/", methods=["GET"])
 def get_random_word():
     random_word = get_random_word_function()
