@@ -299,6 +299,13 @@ SYLLABLE_COUNT_EXAMPLES = {
     "curaçaoen": 4,
     "Guernsey": 2,
     "rùnane": 3,
+    "wesleyanar": 4,
+    "apasjeindianar": 7,
+    "freudianar": 4,
+    "USA-amerikanar": 8,
+    "sciencefictionromanar": 7,
+    "ekvatorialguineanar": 9,
+    "bissauguineanar": 6
 }
 
 HIATUS_WORDS = {
@@ -480,4 +487,7 @@ DIPHTHONG_WORDS = {
     "speed": "spid",
     "sound": "saund",
     "ockey": "okki",
+    "science": "saiens",
+    "fiction": "fiksjen",
+    "guinea": "ginea",
 }
