@@ -48,6 +48,7 @@ docker run --detach \
     --volume /etc/nginx/vhost.d \
     --volume /usr/share/nginx/html \
     --volume /var/run/docker.sock:/tmp/docker.sock:ro \
+    --restart always \
     jwilder/nginx-proxy
 
 docker run --detach \
@@ -55,12 +56,14 @@ docker run --detach \
     --volumes-from nginx-proxy \
     --volume /var/run/docker.sock:/var/run/docker.sock:ro \
     --env "DEFAULT_EMAIL=email@example.org" \
+    --restart always \
     jrcs/letsencrypt-nginx-proxy-companion
 
 docker run --detach \
     --name nynorsk-rimordbok \
     --env "VIRTUAL_HOST=nynorskrimordbok.no" \
     --env "LETSENCRYPT_HOST=nynorskrimordbok.no" \
+    --restart always \
     iverjo/nynorsk-rimordbok
 ```
 
