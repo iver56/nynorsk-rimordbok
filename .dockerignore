@@ -5,9 +5,8 @@
 .git
 .idea
 .pytest_cache
-*.pyc
+**/*.pyc
 coverage.xml
 data/ranker_dataset/*
-k8s/*
 README.md
 pytest.ini
