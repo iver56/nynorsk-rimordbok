@@ -25,18 +25,9 @@
       <h1>Nynorsk<br>Rimordbok</h1></a>
   </header>
 </div>
-<div id="data-wrapper">{% block content %}{% endblock %}</div>
+<div class="data-wrapper">{% block content %}{% endblock %}</div>
 
-<footer id="footer">
-  <div>
-    <img class="logo" src="/img/logo_2.svg" alt="NR">
-    <h4>Nynorsk Rimordbok</h4>
-    <ul>
-      <li><a href="/about/">Om Nynorsk Rimordbok</a></li>
-      <li><a href="https://arustories.com" target="_blank" rel="noopener">arustories.com</a></li>
-    </ul>
-  </div>
-</footer>
+{% block footer %}{% endblock %}
 
 </body>
 

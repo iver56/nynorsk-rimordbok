@@ -61,7 +61,7 @@ body {
   color: #444;
 }
 
-#data-wrapper {
+.data-wrapper {
   box-sizing: border-box;
   background: #f0f0f0;
   border-radius: 2px;
@@ -72,21 +72,17 @@ body {
   color:rgb(49, 49, 49);
 }
 
-#data-wrapper h2, #data-wrapper h3, #data-wrapper form, a {
+.data-wrapper h2, .data-wrapper h3, .data-wrapper form, a {
   text-align: center;
 }
 
-#data-wrapper h2 {
-  margin-top: 0;
-}
-
-#data-wrapper input, #data-wrapper button {
+.data-wrapper input, .data-wrapper button {
   font-size: 1.3em;
   padding: 2px 3px;
   margin: 5px;
 }
 
-#data-wrapper input {
+.data-wrapper input {
   width: 100%;
   box-sizing: border-box;
   max-width: 280px;
